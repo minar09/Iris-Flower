@@ -57,3 +57,17 @@ assert len(iris_data_clean.loc[(iris_data_clean['sepal_length_cm'].isnull()) |
                                (iris_data_clean['sepal_width_cm'].isnull()) |
                                (iris_data_clean['petal_length_cm'].isnull()) |
                                (iris_data_clean['petal_width_cm'].isnull())]) == 0
+                               
+plt.figure(figsize=(10, 10))
+
+for column_index, column in enumerate(iris_data_clean.columns):
+    if column == 'class':
+        continue
+    plt.subplot(2, 2, column_index + 1)
+    sb.violinplot(x='class', y=column, data=iris_data_clean)
+    
+    
+all_inputs = iris_data_clean[['sepal_length_cm', 'sepal_width_cm',
+                             'petal_length_cm', 'petal_width_cm']].values
+all_classes = iris_data_clean['class'].values
+all_inputs[:5]
